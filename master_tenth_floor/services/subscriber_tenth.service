@@ -5,7 +5,7 @@ Description=Master Gateway Subscription Service
 [Service]
 Type=simple
 Restart=on-failure
-ExecStart=/usr/bin/python3 /home/ec2-user/master-gw/master_tenth_floor/subscription.py
+ExecStart=/usr/bin/python3 /home/ec2-user/rh_master_gateway/master_tenth_floor/subscription.py
 
 # Increase the default a bit in order to allow many simultaneous
 # files to be monitored, we might need a lot of fds.
