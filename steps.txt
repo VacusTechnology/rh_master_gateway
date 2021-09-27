@@ -16,7 +16,7 @@
 # make sure here the tables are created and exit
 
 
-#to enable systemd services copy the unit files to /etc/system/system/
+#to enable systemd services copy the unit files to /etc/system/system/ just enter below commonds 
     1. sudo cp master_ground_floor/services/* /etc/systemd/system/
         1.0  sudo systemctl daemon-reload
         1.1  sudo systemctl enable data-upload_ground.service subscriber_ground.service socket-server_ground.service 
