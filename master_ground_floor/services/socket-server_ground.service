@@ -1,0 +1,16 @@
+[Unit]
+Description=Master Socket Server Service
+
+
+[Service]
+Type=simple
+Restart=on-failure
+ExecStart=/usr/bin/python3 /home/ec2-user/master-gw/master_ground_floor/socketServer.py
+
+# Increase the default a bit in order to allow many simultaneous
+# files to be monitored, we might need a lot of fds.
+
+[Install]
+WantedBy=multi-user.target
+
+
