@@ -1,0 +1,32 @@
+### follow manual steps to install master gateway 
+1. clone the repo 
+    git clone https://github.com/VacusTechnology/rh_master_gateway.git
+
+#to create data base to store floor wise data get into mysql
+    1. sudo mysql -u root 
+    2. CREATE DATABASE master_db;
+    3. GRANT ALL ON master_db.* TO 'vacus'@'localhost';
+    4. FLUSH PRIVILEGES;
+    5. use master_db;
+    6. CREATE TABLE first_floor ( id int AUTO_INCREMENT, PRIMARY KEY (id), macaddress varchar(255), X float, Y float, temp float, humidity float, airflow float, iaq float, alert float, battery float, packet int, slave varchar(255));
+    7. CREATE TABLE ground_floor ( id int AUTO_INCREMENT, PRIMARY KEY (id), macaddress varchar(255), X float, Y float, temp float, humidity float, airflow float, iaq float, alert float, battery float, packet int, slave varchar(255));
+    8. CREATE TABLE tenth_floor ( id int AUTO_INCREMENT, PRIMARY KEY (id), macaddress varchar(255), X float, Y float, temp float, humidity float, airflow float, iaq float, alert float, battery float, packet int, slave varchar(255));
+    9. show tables;
+    
+# make sure here the tables are got created and exit
+
+
+#to enable systemd services copy the unit files to /etc/system/system/
+    1. sudo cp master_ground_floor/services/* /etc/systemd/system/
+        1.1  sudo systemctl enable data-upload_ground.service subscriber_ground.service socket-server_ground.service 
+        1.2  sudo systemctl restart data-upload_ground.service subscriber_ground.service socket-server_ground.service 
+        1.3  sudo systemctl status data-upload_ground.service subscriber_ground.service socket-server_ground.service 
+    2. sudo cp master_first_floor/services/* /etc/systemd/system/
+        2.1  sudo systemctl enable data-upload_first.service subscriber_first.service socket-server_first.service 
+        2.2  sudo systemctl restart data-upload_first.service subscriber_first.service socket-server_first.service 
+        2.3  sudo systemctl status data-upload_first.service subscriber_first.service socket-server_first.service 
+    3. sudo cp master_tenth_floor/services/* /etc/systemd/system/
+        3.1  sudo systemctl enable data-upload_tenth.service socket-server_tenth.service subscriber_tenth.service 
+        3.2  sudo systemctl restart data-upload_tenth.service socket-server_tenth.service subscriber_tenth.service 
+        3.3  sudo systemctl status data-upload_tenth.service socket-server_tenth.service subscriber_tenth.service 
+
